@@ -13,8 +13,21 @@
     </div>
     <!-- Navbar-->
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
+        @auth()
+            <li class="nav-item d-flex align-items-center mr-2">
+                <a href="javascript:void(0)"
+                   data-toggle="modal"
+                   data-target="#notifModalLong"
+                   class="text-white text-decoration-none">
+                    @if (auth()->user()->type === 1)
+                        <small class="px-1">100</small>
+                    @endif
+                    <i class="fa fa-comment"></i>
+                </a>
+            </li>
+        @endauth
         <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
+            <a class="dropdown-toggle text-black-50" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="fas fa-user fa-fw"></i></a>
             <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                 <li><a class="dropdown-item" href="#"
                        onclick="event.preventDefault();

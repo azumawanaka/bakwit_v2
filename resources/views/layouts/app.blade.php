@@ -29,6 +29,64 @@
     <div id="app">
         @include('layouts.nav')
 
+
+        <!-- Notification Modal -->
+        <div class="modal fade"
+             id="notifModalLong"
+             tabindex="-1"
+             role="dialog"
+             aria-labelledby="notifModalLongTitle"
+             aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="notifModalLongTitle">
+                            @if(auth()->user()->type === 0)
+                            Notify MDRRMO
+                            @else
+                            Notifications
+                            @endif
+                        </h5>
+                        @if(auth()->user()->type === 1)
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                        @endif
+                    </div>
+                    @if(auth()->user()->type === 0)
+                    <form method="POST" action="{{ route('send.notification') }}">
+                        @csrf
+                        <div class="modal-body">
+                            <div class="mb-3">
+                            <textarea class="form-control"
+                                      id="contents"
+                                      name="contents"
+                                      placeholder="Enter text here.."
+                                      minlength="5"
+                                      required
+                                      rows="4"></textarea>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Send</button>
+                        </div>
+                    </form>
+                    @else
+                    <div class="modal-body">
+                        <ul class="list-group">
+                            <li class="list-group-item">Cras justo odio</li>
+                            <li class="list-group-item">Dapibus ac facilisis in</li>
+                            <li class="list-group-item">Morbi leo risus</li>
+                            <li class="list-group-item">Porta ac consectetur ac</li>
+                            <li class="list-group-item">Vestibulum at eros</li>
+                        </ul>
+                    </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+
         <div @auth() id="layoutSidenav" @endauth class="py-4">
             @auth()
             @include('layouts.side_nav')
