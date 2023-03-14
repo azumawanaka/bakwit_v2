@@ -11749,3 +11749,21 @@ body {
   color: #ffffff;
   background-color: rgb(9, 12, 155);
 }
+
+.notification-box {
+  position: absolute;
+  width: 360px;
+  min-height: 200px;
+  z-index: 999;
+  top: 90%;
+  right: 6%;
+  .toast {
+    position: absolute;
+    top: 0;
+    right: 0;
+    &.-body {
+      overflow-y: auto;
+      max-height: 500px;
+    }
+  }
+}

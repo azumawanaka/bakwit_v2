@@ -63,8 +63,6 @@
 @section('scripts')
     <script>
         $(document).ready(function () {
-            const hasErrors = "{!! $errors->any() !!}"
-
             $('.numberonly').keypress(function (e) {
                 let charCode = (e.which) ? e.which : event.keyCode
                 if (String.fromCharCode(charCode).match(/[^0-9]/g)) {

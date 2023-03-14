@@ -124,6 +124,7 @@ class EvacuationCenterController extends Controller
             $bdrrmo->update([
                 'evacuation_center_type_id' => $request->evacuation_center_type_id,
                 'max_capacity' => $request->max_capacity,
+                'is_evacuation_center_full' => $request->max_capacity == $bdrrmo->evacuee->family_count,
             ]);
             $bdrrmo->barangay->update([
                 'is_flood_prone' => $request->is_flood_prone === 'on',
@@ -138,10 +139,9 @@ class EvacuationCenterController extends Controller
             ]);
 
             if ($bdrrmo->evacuee()->count() > 0) {
-                $subTotal = intval($request->male_count) + intval($request->female_count);
-                $isFull = $subTotal >= intval($request->max_capacity) ? true : false;
+                $isFull = $bdrrmo->max_capacity <= ($request->male_count + $request->female_count);
                 $bdrrmo->update([
-                    'evacuation_center_type_id' => $request->evacuation_center_type_id,
+                    'evacuation_center_type_id' => $bdrrmo->evacuationCenterType->id,
                     'is_evacuation_center_full' => $isFull,
                 ]);
                 $bdrrmo->evacuee()->update($evacuees);

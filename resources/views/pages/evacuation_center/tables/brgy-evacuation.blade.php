@@ -8,7 +8,6 @@
         <thead>
         <tr>
             <th>Barangay</th>
-            {{--            <th>Photos</th>--}}
             <th>Evacuation Center Type</th>
             <th>Maximum Capacity</th>
             <th>Families</th>
@@ -24,11 +23,6 @@
             @foreach($evacuationCenters as $center)
                 <tr>
                     <td>{{ $center->barangay->name }}</td>
-                    {{--            <td>--}}
-                    {{--                @foreach($center->files as $file)--}}
-                    {{--                    <img src='{{ asset($file->path) }}' width="50">--}}
-                    {{--                @endforeach--}}
-                    {{--            </td>--}}
                     <td>{{ $center->evacuationCenterType->name }}</td>
                     <td>{{ $center->max_capacity }}</td>
                     <td>{{ isset($center->evacuee) != null ? $center->evacuee->family_count : 0 }}</td>
@@ -46,12 +40,15 @@
                            data-target="#editEvacuationCenterModal">
                             <i class="fas fa-pencil"></i>
                         </a>
+
+                        @if(auth()->user()->type == 1)
                         <a href="#" class="btn btn-sm btn-outline-danger confirmModalDelete"
                            data-url="{{ route('bdrrmo.destroy', ['bdrrmo' => $center]) }}"
                            data-toggle="modal"
                            data-target="#confirmDelete">
                             <i class="fas fa-trash"></i>
                         </a>
+                        @endif
                     </td>
                 </tr>
             @endforeach

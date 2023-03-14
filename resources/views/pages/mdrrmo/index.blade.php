@@ -17,6 +17,13 @@
                 <div id="map" class="mb-4" style="height: 400px;"></div>
             </div>
         </div>
+
+        <div class="row">
+            @include('pages.evacuation_center.tables.brgy-evacuation')
+
+            @include('pages.evacuation_center.modals.edit-evacuation-center')
+            @include('pages.evacuation_center.modals.confirm-delete')
+        </div>
     </div>
 @endsection
 
@@ -24,8 +31,66 @@
     <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCswO_df1SesOd8uViwi5VkgT2tQ6H6Cto"></script>
     <script src="{{ asset('js/jquery.googlemap.js') }}"></script>
     <script src="{{ asset('js/multi-gmap.js') }}"></script>
+
     <script>
-        $(document).ready(function () {
-        })
-    </script>
+            $(document).ready(function () {
+                $('.numberonly').keypress(function (e) {
+                    let charCode = (e.which) ? e.which : event.keyCode
+                    if (String.fromCharCode(charCode).match(/[^0-9]/g)) {
+                        return false
+                    }
+                    return true
+                })
+
+                function getEvacuationCenter(url, updateUrl) {
+                    window.axios.get(url).then(response => {
+                        let data = response.data
+
+                        $('#form-edit').attr('action', updateUrl)
+                        $('#update_barangay_id')
+                            .attr('disabled', 'disabled')
+                            .val(data.barangay.id)
+                            .change()
+                        $('#update_evacuation_center_type_id').val(data.center_type).change()
+                        $('[name=max_capacity]').val(data.max_capacity)
+
+                        if (data.evacuee !== null) {
+                            let family_count = data.evacuee.family_count
+                            let male_count = data.evacuee.male_count
+                            let female_count = data.evacuee.female_count
+                            let pwd_count = data.evacuee.pwd_count
+
+                            let min_capacity = family_count == 0 ? 11 : family_count
+                            $('[name=family_count]')
+                                .attr('max', min_capacity)
+                            $('[name=family_count]')
+                                .val(family_count)
+
+                            $('[name=male_count]').val(male_count)
+                            $('[name=female_count]').val(female_count)
+                            $('[name=pwd_count]').val(pwd_count)
+                        }
+                    })
+                }
+
+                $(document).on('click','.edit-evacuation-center', function(e) {
+                    let url = $(this).attr('data-get-url')
+                    updateUrl = $(this).attr('data-update-url')
+
+                    $('[name=family_count]').val(0)
+                    $('[name=male_count]').val(0)
+                    $('[name=female_count]').val(0)
+                    $('[name=pwd_count]').val(0)
+
+                    getEvacuationCenter(url, updateUrl)
+                })
+
+                $(document).on('click', '.confirmModalDelete', function (e) {
+                    e.preventDefault()
+                    let url = $(this).attr('data-url')
+                    $('#confirmDelete form').attr('action', url)
+                })
+
+            })
+        </script>
 @endsection

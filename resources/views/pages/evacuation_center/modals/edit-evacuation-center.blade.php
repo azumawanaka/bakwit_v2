@@ -14,13 +14,16 @@
                     <div class="form-floating mb-3">
                         <select class="form-control"
                                 readonly="true"
-                                id="update_barangay_id">
+                                id="update_barangay_id"
+                                @if(auth()->user()->type == 0) disabled @endif>
                             @foreach($allBarangay as $brgy)
                                 <option value="{{ $brgy->id }}">{{ $brgy->name }}</option>
                             @endforeach
                         </select>
                         <label for="update_barangay_id">Barangay</label>
                     </div>
+
+                    @if(auth()->user()->type === 1)
                     <div class="form-check mb-3">
                         <input class="form-check-input"
                                id="update_is_flood_prone"
@@ -36,13 +39,14 @@
                                 {{ old('is_storm_surge') ? 'checked' : '' }} />
                         <label class="form-check-label" for="update_is_storm_surge"><small>Is this barangay near storm surge areas?</small></label>
                     </div>
-
                     <hr/>
+                    @endif
 
                     <div class="form-floating mb-3">
                         <select class="form-control @error('evacuation_center_type_id') is-invalid @enderror"
                                 name="evacuation_center_type_id"
-                                id="update_evacuation_center_type_id">
+                                id="update_evacuation_center_type_id"
+                                @if(auth()->user()->type == 0) disabled @endif>
                             @foreach($evacuation_center_types as $eCenter)
                                 <option value="{{ $eCenter->id }}" {{ old('evacuation_center_type_id') == $eCenter->id ? 'selected' : ''  }}>{{ $eCenter->name }}</option>
                             @endforeach
@@ -60,7 +64,8 @@
                                name="max_capacity"
                                id="update_max_capacity"
                                value="11"
-                               min="11">
+                               min="11"
+                               @if(auth()->user()->type == 0) disabled @endif>
                         <label for="update_max_capacity">Max Capacity</label>
                         @error('max_capacity')
                         <span class="invalid-feedback" role="alert">
@@ -68,17 +73,19 @@
                         </span>
                         @enderror
                     </div>
+                    @if (auth()->user()->type == 1)
                     <div class="form-group">
                         <label for="update_files">Upload Photos <small class="text-muted">(optional)</small></label>
                         <input type="file" name="files[]" id="update_files" class="form-control" multiple>
                     </div>
+                    @endif
 
                     @if(auth()->user()->type === 0)
                     <div class="row evacuees_fields">
                         <label>Evacuees</label>
                         <hr />
                         <div class="form-floating mb-3 col-md-6">
-                            <input type="text"
+                            <input type="number"
                                    class="form-control numberonly @error('family_count') is-invalid @enderror"
                                    name="family_count"
                                    value="0">
@@ -90,7 +97,7 @@
                             @enderror
                         </div>
                         <div class="form-floating mb-3 col-md-6">
-                            <input type="text"
+                            <input type="number"
                                    class="form-control numberonly @error('male_count') is-invalid @enderror"
                                    name="male_count"
                                    value="0">
@@ -102,7 +109,7 @@
                             @enderror
                         </div>
                         <div class="form-floating mb-3 col-md-6">
-                            <input type="text"
+                            <input type="number"
                                    class="form-control numberonly @error('female_count') is-invalid @enderror"
                                    name="female_count"
                                    value="0">
@@ -114,7 +121,7 @@
                             @enderror
                         </div>
                         <div class="form-floating mb-3 col-md-6">
-                            <input type="text"
+                            <input type="number"
                                    class="form-control numberonly @error('pwd_count') is-invalid @enderror"
                                    name="pwd_count"
                                    value="0">

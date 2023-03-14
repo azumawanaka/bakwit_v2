@@ -47,9 +47,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/calamity', [App\Http\Controllers\CalamityController::class, 'store'])
         ->name('calamity.store');
 
-    Route::middleware('super_admin')->group(function () {
+//    Route::middleware('super_admin')->group(function () {
         Route::resource('bdrrmo', EvacuationCenterController::class);
-    });
+//    });
 
     Route::post('mdrrmo/notify', [\App\Http\Controllers\NotificationController::class, 'store'])
         ->name('send.notification');

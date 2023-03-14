@@ -15,15 +15,41 @@
     <ul class="navbar-nav ms-auto ms-md-0 me-3 me-lg-4">
         @auth()
             <li class="nav-item d-flex align-items-center mr-2">
+                @if (auth()->user()->type === 1)
+                    <a href="javascript:void(0)"
+                       class="text-white text-decoration-none {{ count($notifications) > 0 ? 'show-notifications' : '' }}">
+                        <small class="px-1">{{ count($notifications) }}</small>
+                        <i class="fa fa-comment"></i>
+                    </a>
+                @else
                 <a href="javascript:void(0)"
                    data-toggle="modal"
                    data-target="#notifModalLong"
                    class="text-white text-decoration-none">
-                    @if (auth()->user()->type === 1)
-                        <small class="px-1">100</small>
-                    @endif
                     <i class="fa fa-comment"></i>
                 </a>
+                @endif
+
+                <div aria-live="polite" aria-atomic="true" class="notification-box">
+                    <div id="notifications" class="toast fade" data-autohide="false">
+                        <div class="toast-header">
+                            <strong class="mr-auto">Notifications</strong>
+                            <button type="button" class="ml-2 mb-1 close close-notification" data-dismiss="toast" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="toast-body">
+                            @foreach($notifications as $notif)
+                                <div class="border-bottom py-1">
+                                    <div class="d-flex justify-content-between">
+                                        {{ $notif->contents }}
+                                    </div>
+                                    <small>{{ $notif->updated_at->diffForHumans() }}</small>
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
             </li>
         @endauth
         <li class="nav-item dropdown">
@@ -35,7 +61,8 @@
             </ul>
         </li>
     </ul>
-    @else
+
+@else
     <!-- Navbar-->
     <ul class="navbar-nav align-items-center">
         <li class="nav-item {{ request()->routeIs('barangays.index*') ? 'active' : '' }}">
@@ -54,3 +81,5 @@
 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
     @csrf
 </form>
+
+

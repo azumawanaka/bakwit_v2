@@ -29,7 +29,6 @@
     <div id="app">
         @include('layouts.nav')
 
-
         <!-- Notification Modal -->
         <div class="modal fade"
              id="notifModalLong"
@@ -41,18 +40,24 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="notifModalLongTitle">
-                            @if(auth()->user()->type === 0)
-                            Notify MDRRMO
-                            @else
-                            Notifications
-                            @endif
+                            @auth()
+                                @if(auth()->user()->type === 0)
+                                Notify MDRRMO
+                                @else
+                                Notifications
+                                @endif
+                            @endauth
                         </h5>
+                        @auth()
                         @if(auth()->user()->type === 1)
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                             <span aria-hidden="true">&times;</span>
                         </button>
                         @endif
+                        @endauth
                     </div>
+
+                    @auth()
                     @if(auth()->user()->type === 0)
                     <form method="POST" action="{{ route('send.notification') }}">
                         @csrf
@@ -72,17 +77,8 @@
                             <button type="submit" class="btn btn-primary">Send</button>
                         </div>
                     </form>
-                    @else
-                    <div class="modal-body">
-                        <ul class="list-group">
-                            <li class="list-group-item">Cras justo odio</li>
-                            <li class="list-group-item">Dapibus ac facilisis in</li>
-                            <li class="list-group-item">Morbi leo risus</li>
-                            <li class="list-group-item">Porta ac consectetur ac</li>
-                            <li class="list-group-item">Vestibulum at eros</li>
-                        </ul>
-                    </div>
                     @endif
+                    @endauth
                 </div>
             </div>
         </div>
@@ -104,6 +100,19 @@
     <script src="{{ asset('js/scripts.js') }}"></script>
     <script src="{{ asset('js/moment.min.js') }}"></script>
     <script src="{{ asset('js/weather.js') }}"></script>
+
+    <script>
+        $(document).ready(function() {
+            $(document).on('click', '.show-notifications', function(e) {
+                e.preventDefault()
+                $('#notifications').addClass('show')
+            })
+            $(document).on('click', '.close-notification', function(e) {
+                e.preventDefault()
+                $('#notifications').removeClass('show')
+            })
+        })
+    </script>
 
 @yield('scripts')
 </body>
