@@ -39,10 +39,15 @@ Route::middleware('auth')->group(function () {
         ->name('mdrrmo.centers');
     Route::get('mdrrmo/generate-report', [\App\Http\Controllers\CsvController::class, 'generateReport'])
         ->name('mdrrmo.generate-report');
+
+
     Route::get('bdrrmo/generate-pdf', [\App\Http\Controllers\PDFController::class, 'generatePDF'])
         ->name('bdrrmo.generate-pdf');
     Route::get('bdrrmo/{bdrrmo}/center', [EvacuationCenterController::class, 'getCenter'])
         ->name('bdrrmo.center');
+
+    Route::get('evacuees/{evacuee}', [\App\Http\Controllers\EvacueeController::class, 'index'])
+        ->name('bdrrmo.evacuees.lists');
 
     Route::post('/calamity', [App\Http\Controllers\CalamityController::class, 'store'])
         ->name('calamity.store');

@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Evacuee extends Model
 {
@@ -29,5 +30,10 @@ class Evacuee extends Model
     public function evacuationCenter(): BelongsTo
     {
         return $this->belongsTo(EvacuationCenter::class);
+    }
+
+    public function evacueeInfos(): HasMany
+    {
+        return $this->hasMany(EvacueeInfo::class);
     }
 }

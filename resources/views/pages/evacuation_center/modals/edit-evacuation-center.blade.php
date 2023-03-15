@@ -98,30 +98,6 @@
                         </div>
                         <div class="form-floating mb-3 col-md-6">
                             <input type="number"
-                                   class="form-control numberonly @error('male_count') is-invalid @enderror"
-                                   name="male_count"
-                                   value="0">
-                            <label for="male_count" class="ml-2">No. of male</label>
-                            @error('male_count')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                        <div class="form-floating mb-3 col-md-6">
-                            <input type="number"
-                                   class="form-control numberonly @error('female_count') is-invalid @enderror"
-                                   name="female_count"
-                                   value="0">
-                            <label for="female_count" class="ml-2">No. of female</label>
-                            @error('female_count')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
-                        <div class="form-floating mb-3 col-md-6">
-                            <input type="number"
                                    class="form-control numberonly @error('pwd_count') is-invalid @enderror"
                                    name="pwd_count"
                                    value="0">

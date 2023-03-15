@@ -91,16 +91,12 @@
 
                     if (data.evacuee !== null) {
                         let family_count = data.evacuee.family_count
-                        let male_count = data.evacuee.male_count
-                        let female_count = data.evacuee.female_count
                         let pwd_count = data.evacuee.pwd_count
 
                         let min_capacity = family_count == 0 ? 11 : family_count
                         $('#update_max_capacity').attr('min', min_capacity)
 
                         $('[name=family_count]').val(family_count)
-                        $('[name=male_count]').val(male_count)
-                        $('[name=female_count]').val(female_count)
                         $('[name=pwd_count]').val(pwd_count)
                     }
                 })
@@ -111,8 +107,6 @@
                 updateUrl = $(this).attr('data-update-url')
 
                 $('[name=family_count]').val(0)
-                $('[name=male_count]').val(0)
-                $('[name=female_count]').val(0)
                 $('[name=pwd_count]').val(0)
 
                 getEvacuationCenter(url, updateUrl)

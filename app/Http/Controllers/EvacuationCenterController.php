@@ -121,10 +121,11 @@ class EvacuationCenterController extends Controller
     public function update(EvacuationCenter $bdrrmo, Request $request)
     {
         if (auth()->user()->type === 1) {
+            $familyCount = !isset($bdrrmo->evacuee->family_count) ? 0 : $bdrrmo->evacuee->family_count;
             $bdrrmo->update([
                 'evacuation_center_type_id' => $request->evacuation_center_type_id,
                 'max_capacity' => $request->max_capacity,
-                'is_evacuation_center_full' => $request->max_capacity == $bdrrmo->evacuee->family_count,
+                'is_evacuation_center_full' => $request->max_capacity == $familyCount,
             ]);
             $bdrrmo->barangay->update([
                 'is_flood_prone' => $request->is_flood_prone === 'on',
@@ -133,13 +134,12 @@ class EvacuationCenterController extends Controller
         } else {
             $evacuees = $request->only([
                 'family_count',
-                'male_count',
-                'female_count',
                 'pwd_count',
             ]);
 
             if ($bdrrmo->evacuee()->count() > 0) {
-                $isFull = $bdrrmo->max_capacity <= ($request->male_count + $request->female_count);
+                $familyCount = !isset($bdrrmo->evacuee->family_count) ? 0 : $bdrrmo->evacuee->family_count;
+                $isFull = $bdrrmo->max_capacity <= $familyCount;
                 $bdrrmo->update([
                     'evacuation_center_type_id' => $bdrrmo->evacuationCenterType->id,
                     'is_evacuation_center_full' => $isFull,
@@ -168,8 +168,6 @@ class EvacuationCenterController extends Controller
         Evacuee::create([
             'evacuation_center_id' => $evacuationId,
             'family_count' => $evacuees['family_count'],
-            'male_count' => $evacuees['male_count'],
-            'female_count' => $evacuees['female_count'],
             'pwd_count' => $evacuees['pwd_count'],
         ]);
     }

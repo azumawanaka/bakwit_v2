@@ -15,7 +15,7 @@
             <th>Females</th>
             <th>PWDs</th>
             <th>Status</th>
-            <th>Options</th>
+            <th style="width: 120px;">Options</th>
         </tr>
         </thead>
         <tbody>
@@ -42,12 +42,19 @@
                         </a>
 
                         @if(auth()->user()->type == 1)
-                        <a href="#" class="btn btn-sm btn-outline-danger confirmModalDelete"
-                           data-url="{{ route('bdrrmo.destroy', ['bdrrmo' => $center]) }}"
-                           data-toggle="modal"
-                           data-target="#confirmDelete">
-                            <i class="fas fa-trash"></i>
-                        </a>
+                            <a href="#" class="btn btn-sm btn-outline-danger confirmModalDelete"
+                               data-url="{{ route('bdrrmo.destroy', ['bdrrmo' => $center]) }}"
+                               data-toggle="modal"
+                               data-target="#confirmDelete">
+                                <i class="fas fa-trash"></i>
+                            </a>
+                        @else
+                            @if ($center->evacuee)
+                            <a href="{{ route('bdrrmo.evacuees.lists', ['evacuee' => $center->evacuee]) }}" class="btn btn-sm btn-outline-info"">
+                                <i class="fas fa-users"></i>
+                                <i class="fas fa-plus-square"></i>
+                            </a>
+                            @endif
                         @endif
                     </td>
                 </tr>
