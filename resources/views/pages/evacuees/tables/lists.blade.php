@@ -14,16 +14,21 @@
         </thead>
         <tbody>
         @if($evacuees->count() > 0)
+            @foreach($evacuees as $list)
             <tr>
-                <td>Barangay name</td>
-                <td>Filjumar</td>
-                <td>Jumamoy</td>
-                <td>Male</td>
-                <td>28</td>
-                <td>No</td>
-                <td>Purok 1</td>
-                <td></td>
+                <td>{{ $brgy->name }}</td>
+                <td>{{ $list->first_name }}</td>
+                <td>{{ $list->last_name }}</td>
+                <td>{{ $list->gender }}</td>
+                <td>{{ $list->age }}</td>
+                <td>{{ $list->is_head ? 'Yes' : 'No' }}</td>
+                <td>{{ $list->purok }}</td>
+                <td>
+                    <a href="#" class="btn btn-info text-white btn-sm"><i class="fa fa-pencil"></i></a>
+                    <a href="#" class="btn btn-danger btn-sm"><i class="fa fa-trash"></i></a>
+                </td>
             </tr>
+            @endforeach
         @else
             <tr>
                 <td colspan="9" class="text-muted text-center">No Record</td>

@@ -48,6 +48,8 @@ Route::middleware('auth')->group(function () {
 
     Route::get('evacuees/{evacuee}', [\App\Http\Controllers\EvacueeController::class, 'index'])
         ->name('bdrrmo.evacuees.lists');
+    Route::post('evacuees/{evacuee}', [\App\Http\Controllers\EvacueeController::class, 'store'])
+        ->name('bdrrmo.evacuees.lists.store');
 
     Route::post('/calamity', [App\Http\Controllers\CalamityController::class, 'store'])
         ->name('calamity.store');

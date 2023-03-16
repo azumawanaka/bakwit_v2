@@ -50,7 +50,7 @@
                             </a>
                         @else
                             @if ($center->evacuee)
-                            <a href="{{ route('bdrrmo.evacuees.lists', ['evacuee' => $center->evacuee]) }}" class="btn btn-sm btn-outline-info"">
+                            <a href="{{ route('bdrrmo.evacuees.lists', ['evacuee' => $center->evacuee]) }}" class="btn btn-sm btn-outline-info">
                                 <i class="fas fa-users"></i>
                                 <i class="fas fa-plus-square"></i>
                             </a>

@@ -2,12 +2,17 @@
 
 @section('content')
     <div class="container-fluid px-4">
-        <h1 class="mt-4">Evacuees</h1>
+        <h1 class="mt-4">{{ $brgy->name }} list of evacuees</h1>
         <ol class="breadcrumb mb-5">
             <li class="breadcrumb-item"><a href="/" class="text-decoration-none">Dashboard</a></li>
             <li class="breadcrumb-item active">Evacuees</li>
         </ol>
         <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-primary btn-sm"
+                    data-toggle="modal"
+                    data-target="#evacueeModalCenter">
+                <i class="fa fa-plus"></i> Add Evacuee
+            </button>
             <form class="d-flex align-items-center">
                 @if(isset(request()->keyword))
                     <div class="mr-2">
@@ -39,6 +44,7 @@
         <hr/>
 
         @include('pages.evacuees.tables.lists')
+        @include('pages.evacuees.modal.new_evacuee')
     </div>
 
 @endsection
