@@ -46,10 +46,14 @@ Route::middleware('auth')->group(function () {
     Route::get('bdrrmo/{bdrrmo}/center', [EvacuationCenterController::class, 'getCenter'])
         ->name('bdrrmo.center');
 
+    Route::delete('evacuees/{evacuee}/delete/{info}', [\App\Http\Controllers\EvacueeController::class, 'destroy'])
+        ->name('bdrrmo.evacuees.lists.delete');
     Route::get('evacuees/{evacuee}', [\App\Http\Controllers\EvacueeController::class, 'index'])
         ->name('bdrrmo.evacuees.lists');
     Route::post('evacuees/{evacuee}', [\App\Http\Controllers\EvacueeController::class, 'store'])
         ->name('bdrrmo.evacuees.lists.store');
+    Route::put('evacuees/{evacuee}/update/{info}', [\App\Http\Controllers\EvacueeController::class, 'update'])
+        ->name('bdrrmo.evacuees.lists.update');
 
     Route::post('/calamity', [App\Http\Controllers\CalamityController::class, 'store'])
         ->name('calamity.store');

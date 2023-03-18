@@ -95,7 +95,7 @@
                                     <div class="d-flex justify-content-between border-bottom py-1">Maximum Capacity <span class="badge badge-info">${data.evacuation_center.max_capacity}</span></div>
                                     <div class="d-flex justify-content-between border-bottom py-1">Family <span class="badge badge-${family_count == 0 ? 'danger' : 'info'} mr-1">${family_count}</span></div>
                                     <div class="d-flex justify-content-between border-bottom py-1">Male <span class="badge badge-${male_count == 0 ? 'danger' : 'info'} mr-1">${male_count}</span></div>
-                                    <div class="d-flex justify-content-between border-bottom py-1">Femal <span class="badge badge-${female_count == 0 ? 'danger' : 'info'} mr-1">${female_count}</span></div>
+                                    <div class="d-flex justify-content-between border-bottom py-1">Female <span class="badge badge-${female_count == 0 ? 'danger' : 'info'} mr-1">${female_count}</span></div>
                                     <div class="d-flex justify-content-between border-bottom py-1">PWDs <span class="badge badge-${pwd_count == 0 ? 'danger' : 'info'} mr-1">${pwd_count}</span></div>
                                     <div class="d-flex justify-content-between border-bottom py-1">Is Evacuation Center Full? <span class="badge badge-info">${data.evacuation_center.is_evacuation_center_full ? 'Yes' : 'No'}</span></div>
                                 `

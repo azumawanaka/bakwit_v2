@@ -66,17 +66,20 @@
     <!-- Navbar-->
     <ul class="navbar-nav align-items-center">
         <li class="nav-item {{ request()->routeIs('barangays.index*') ? 'active' : '' }}">
-            <a href="{{ route('barangays.index') }}" class="nav-link">Barangays</a>
+            <a href="{{ route('barangays.index') }}" class="nav-link"><i class="fas fa-house"></i> Barangays</a>
         </li>
         <li class="nav-item">
             <a href="{{ route('calamity.index') }}"
-               class="nav-link {{ request()->routeIs('calamity.index') ? 'active' : '' }}">Calamity</a>
+               class="nav-link {{ request()->routeIs('calamity.index') ? 'active' : '' }}"><i class="fas fa-cloud"></i> Calamity</a>
         </li>
         <li class="nav-item">
-            <a href="{{ route('gsis.index') }}" class="nav-link {{ request()->routeIs('gsis.index') ? 'active' : '' }}">GIS</a>
+            <a href="{{ route('gsis.index') }}"
+               class="nav-link {{ request()->routeIs('gsis.index') ? 'active' : '' }}"><i class="fas fa-map-marker"></i> GIS</a>
         </li>
     </ul>
     @endauth
+
+    <a href="/login" class="login-btn text-decoration-none text-white"><i class="fas fa-sign-in"></i> Login</a>
 </nav>
 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
     @csrf

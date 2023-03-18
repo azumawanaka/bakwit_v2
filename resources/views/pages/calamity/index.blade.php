@@ -60,9 +60,11 @@
                         @endif
                     </div>
                     @auth()
-                    <div class="card-footer p-0">
-                        <button type="button" class="btn btn-block btn-primary rounded-0 toggle-form">Update Calamity Info</button>
-                    </div>
+                        @if(auth()->user()->type === 1)
+                            <div class="card-footer p-0">
+                                <button type="button" class="btn btn-block btn-primary rounded-0 toggle-form">Update Calamity Info</button>
+                            </div>
+                        @endif
                     @endauth
                 </div>
             </div>

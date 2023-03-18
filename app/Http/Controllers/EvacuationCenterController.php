@@ -105,6 +105,7 @@ class EvacuationCenterController extends Controller
     {
         $data = [
             'max_capacity' => $bdrrmo->max_capacity,
+            'needs' => $bdrrmo->needs,
             'barangay' => $bdrrmo->barangay,
             'center_type' => $bdrrmo->evacuation_center_type_id,
             'evacuee' => $bdrrmo->evacuee,
@@ -134,7 +135,6 @@ class EvacuationCenterController extends Controller
         } else {
             $evacuees = $request->only([
                 'family_count',
-                'pwd_count',
             ]);
 
             if ($bdrrmo->evacuee()->count() > 0) {
@@ -143,6 +143,7 @@ class EvacuationCenterController extends Controller
                 $bdrrmo->update([
                     'evacuation_center_type_id' => $bdrrmo->evacuationCenterType->id,
                     'is_evacuation_center_full' => $isFull,
+                    'needs' => $request->needs,
                 ]);
                 $bdrrmo->evacuee()->update($evacuees);
             } else {
@@ -168,7 +169,6 @@ class EvacuationCenterController extends Controller
         Evacuee::create([
             'evacuation_center_id' => $evacuationId,
             'family_count' => $evacuees['family_count'],
-            'pwd_count' => $evacuees['pwd_count'],
         ]);
     }
 

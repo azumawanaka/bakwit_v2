@@ -22,6 +22,7 @@ class EvacuationCenter extends Model
         'evacuation_center_type_id',
         'max_capacity',
         'is_evacuation_center_full',
+        'needs',
     ];
 
     /**

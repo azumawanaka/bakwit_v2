@@ -19,15 +19,14 @@ class EvacueeInfoService extends Model
     /**
      * @param $evacuee
      * @param $keyword
-     * @param $limit
      * @return LengthAwarePaginator
      */
-    public function getEvacueesList($evacuee, $keyword, $limit): LengthAwarePaginator
+    public function getEvacueesList($evacuee, $keyword): LengthAwarePaginator
     {
         return $this->model->with('evacuee')
             ->where('evacuee_id', $evacuee->id)
             ->where(\DB::raw('CONCAT(first_name,last_name)'), 'like', '%' . $keyword . '%')
-            ->paginate($limit);
+            ->paginate();
     }
 
     /**
@@ -43,6 +42,25 @@ class EvacueeInfoService extends Model
             'gender' => $request->gender,
             'age' => $request->age,
             'is_head' => isset($request->is_head),
+            'is_pwd' => isset($request->is_pwd),
+            'purok' => $request->purok,
+        ]);
+    }
+
+    /**
+     * @param $info
+     * @param $request
+     * @return void
+     */
+    public function updateEvacuee($info, $request)
+    {
+        $info->update([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'age' => $request->age,
+            'gender' => $request->gender,
+            'is_head' => isset($request->is_head),
+            'is_pwd' => isset($request->is_pwd),
             'purok' => $request->purok,
         ]);
     }

@@ -30,9 +30,9 @@
                         @php
                             $male_count = isset($center->evacuee) != null ? $center->evacuee->male_count : 0;
                             $female_count = isset($center->evacuee) != null ? $center->evacuee->female_count : 0;
-                            $total = $male_count + $female_count;
+                            $family_count = isset($center->evacuee) != null ? $center->evacuee->family_count : 0;
                         @endphp
-                        {{ $total }} / {{ $center->max_capacity }}
+                        {{ $family_count }} / {{ $center->max_capacity }}
                     </td>
                     <td>{{ $male_count }}</td>
                     <td>{{ $female_count }}</td>

@@ -8,7 +8,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form method="post" action={{ route('bdrrmo.evacuees.lists.store', ['evacuee' => $evacuee]) }}>
+            <form method="post" action="{{ route('bdrrmo.evacuees.lists.store', ['evacuee' => $evacuee]) }}">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group required">
@@ -33,14 +33,20 @@
                         </div>
                     </div>
                     <div class="form-group">
+                        <label for="purok">Purok</label>
+                        <input type="text" name="purok" class="form-control" id="purok" placeholder="Purok 1..">
+                    </div>
+                    <div class="form-group">
                         <div class="form-check form-check-inline">
                             <input class="form-check-input mt-1" name="is_head" type="checkbox" id="is_head" value="1">
                             <label class="form-check-label" for="is_head">Is head of family</label>
                         </div>
                     </div>
                     <div class="form-group">
-                        <label for="purok">Purok</label>
-                        <input type="text" name="purok" class="form-control" id="purok" placeholder="Purok 1..">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input mt-1" name="is_pwd" type="checkbox" id="is_pwd" value="1">
+                            <label class="form-check-label" for="is_head">Is PWD</label>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">

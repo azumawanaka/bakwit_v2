@@ -83,6 +83,7 @@
                     $('#update_evacuation_center_type_id').val(data.center_type).change()
 
                     $('#update_max_capacity').val(data.max_capacity)
+                    $('#brgy_needs').html(data.needs)
 
                     let is_flood_prone = data.barangay.is_flood_prone ? true : false
                     let is_storm_surge = data.barangay.is_storm_surge ? true : false
@@ -91,13 +92,9 @@
 
                     if (data.evacuee !== null) {
                         let family_count = data.evacuee.family_count
-                        let pwd_count = data.evacuee.pwd_count
-
                         let min_capacity = family_count == 0 ? 11 : family_count
                         $('#update_max_capacity').attr('min', min_capacity)
-
                         $('[name=family_count]').val(family_count)
-                        $('[name=pwd_count]').val(pwd_count)
                     }
                 })
             }
@@ -108,6 +105,7 @@
 
                 $('[name=family_count]').val(0)
                 $('[name=pwd_count]').val(0)
+                $('[name=needs]').val('')
 
                 getEvacuationCenter(url, updateUrl)
             })

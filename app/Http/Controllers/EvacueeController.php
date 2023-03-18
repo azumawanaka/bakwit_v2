@@ -48,8 +48,7 @@ class EvacueeController extends Controller
      */
     public function index(Evacuee $evacuee, Request $request)
     {
-        $limit = 5;
-        $lists = $this->evacueeInfoService->getEvacueesList($evacuee, $request->keyword, $limit);
+        $lists = $this->evacueeInfoService->getEvacueesList($evacuee, $request->keyword);
         return view('pages.evacuees.index', [
             'evacuee' => $evacuee,
             'brgy' => $evacuee->evacuationCenter->barangay,
@@ -65,12 +64,32 @@ class EvacueeController extends Controller
     public function store(Evacuee $evacuee, Request $request): RedirectResponse
     {
         $this->evacueeInfoService->storeEvacuees($evacuee, $request);
-        $this->evacueeService->updateFemaleAndMaleCounts($evacuee);
+        $this->evacueeService->updateCounts($evacuee);
         return redirect()->back()->with('msg', 'Evacuee successfully added.');
     }
 
-    private function updateAdultOrChildrenCounts($evacuee)
+    /**
+     * @param Evacuee $evacuee
+     * @param EvacueeInfo $info
+     * @param Request $request
+     * @return RedirectResponse
+     */
+    public function update(Evacuee $evacuee, EvacueeInfo $info, Request $request): RedirectResponse
     {
+        $this->evacueeInfoService->updateEvacuee($info, $request);
+        $this->evacueeService->updateCounts($evacuee);
+        return redirect()->back()->with('msg', 'Evacuee '.$info->full_name.' was successfully updated.');
+    }
 
+    /**
+     * @param Evacuee $evacuee
+     * @param EvacueeInfo $info
+     * @return RedirectResponse
+     */
+    public function destroy(Evacuee $evacuee, EvacueeInfo $info)
+    {
+        $info->delete();
+        $this->evacueeService->updateCounts($evacuee);
+        return redirect()->back()->with('msg', 'Evacuee successfully deleted.');
     }
 }

@@ -84,7 +84,7 @@
                     <div class="row evacuees_fields">
                         <label>Evacuees</label>
                         <hr />
-                        <div class="form-floating mb-3 col-md-6">
+                        <div class="form-floating mb-3 col-md-12">
                             <input type="number"
                                    class="form-control numberonly @error('family_count') is-invalid @enderror"
                                    name="family_count"
@@ -96,19 +96,24 @@
                             </span>
                             @enderror
                         </div>
-                        <div class="form-floating mb-3 col-md-6">
-                            <input type="number"
-                                   class="form-control numberonly @error('pwd_count') is-invalid @enderror"
-                                   name="pwd_count"
-                                   value="0">
-                            <label for="pwd_count" class="ml-2">No. of PWD</label>
-                            @error('pwd_count')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                            @enderror
-                        </div>
                     </div>
+
+                    <div class="form-group">
+                        <label for="city_tag">Needs of your barangay</label>
+                        <textarea class="form-control"
+                                  rows="5"
+                                  name="needs"
+                                  placeholder="Enter needs here.."></textarea>
+                    </div>
+                    @else
+
+                        <div class="form-group">
+                            <label for="city_tag">Their needs</label>
+                            <textarea class="form-control"
+                                      id="brgy_needs"
+                                      rows="5"
+                                      disabled></textarea>
+                        </div>
                     @endif
                 </div>
                 <div class="modal-footer py-1">

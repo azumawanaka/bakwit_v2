@@ -17,6 +17,7 @@ class EvacueeInfo extends Model
         'gender',
         'age',
         'is_head',
+        'is_pwd',
         'purok',
     ];
 
@@ -30,7 +31,12 @@ class EvacueeInfo extends Model
      */
     protected $casts = [
         'is_head' => 'boolean',
+        'is_pwd' => 'boolean',
     ];
+
+    public function getFullNameAttribute() {
+        return ucfirst($this->first_name) . ' ' . ucfirst($this->last_name);
+   }
 
     public function evacuee(): BelongsTo
     {

@@ -7,22 +7,26 @@
             <li class="breadcrumb-item"><a href="/" class="text-decoration-none">Dashboard</a></li>
             <li class="breadcrumb-item active">MDRRMO</li>
         </ol>
-
+        @if(auth()->user()->type === 0)
+            <div class="row">
+                @include('pages.evacuation_center.tables.brgy-evacuation')
+                @include('pages.evacuation_center.modals.edit-evacuation-center')
+                @include('pages.evacuation_center.modals.confirm-delete')
+            </div>
+        @endif
         <div class="row">
+            @if(auth()->user()->type === 1)
             <div class="col-md-5">
+                @if(auth()->user()->type === 0)
                 <h4 class="mb-3"><i class="fa fa-house"></i> Barangay Information</h4>
+                @endif
                 @include('pages.mdrrmo.tables.brgy-evacuation')
             </div>
-            <div class="col-md-7">
+            @endif
+            <div class="col-md-{{ auth()->user()->type === 0 ? '12' : '7' }}">
+                <h4 class="mb-3"><i class="fa fa-house"></i> Barangay Information</h4>
                 <div id="map" class="mb-4" style="height: 400px;"></div>
             </div>
-        </div>
-
-        <div class="row">
-            @include('pages.evacuation_center.tables.brgy-evacuation')
-
-            @include('pages.evacuation_center.modals.edit-evacuation-center')
-            @include('pages.evacuation_center.modals.confirm-delete')
         </div>
     </div>
 @endsection
@@ -53,6 +57,7 @@
                             .change()
                         $('#update_evacuation_center_type_id').val(data.center_type).change()
                         $('[name=max_capacity]').val(data.max_capacity)
+                        $('[name=needs]').html(data.needs)
 
                         if (data.evacuee !== null) {
                             let family_count = data.evacuee.family_count

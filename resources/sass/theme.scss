@@ -11767,3 +11767,43 @@ body {
     }
   }
 }
+
+.table thead th {
+  font-size: 16px!important;
+}
+
+.bootstrap-tagsinput {
+  border: 1px solid lightgray;
+  border-radius: 4px;
+  padding: 0 10px;
+  font-size: 16px;
+  .label-info {
+    background-color: #198754;
+    color: #ffffff;
+    border-radius: 4px;
+    font-size: 14px;
+    padding: 2px 10px;
+    padding-right: 14px;
+  }
+  [data-role="remove"] {
+    position: relative;
+    padding-left: 5px;
+    color: white;
+    cursor: pointer;
+    &:before {
+      position: absolute;
+      content: 'x';
+      bottom: 0px;
+    }
+  }
+  input {
+    border: 0;
+  }
+}
+
+.login-btn {
+  position: fixed;
+  z-index: 999;
+  top : 10px;
+  right: 20px;
+}

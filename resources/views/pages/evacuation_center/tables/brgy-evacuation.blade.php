@@ -1,7 +1,7 @@
 <div class="row table-responsive">
     <div class="mb-3">
         Legend:
-        <small><span class="legend bg-danger"></span> Full</small> 
+        <small><span class="legend bg-danger"></span> Full</small>
         <small><span class="legend bg-success"></span> Available</small>
     </div>
     <table class="table table-dashed">
@@ -15,7 +15,7 @@
             <th>Females</th>
             <th>PWDs</th>
             <th>Status</th>
-            <th style="width: 120px;">Options</th>
+            <th style="width: 140px;">Options</th>
         </tr>
         </thead>
         <tbody>
@@ -48,13 +48,14 @@
                                data-target="#confirmDelete">
                                 <i class="fas fa-trash"></i>
                             </a>
-                        @else
-                            @if ($center->evacuee)
+                        @endif
+                        @if ($center->evacuee)
                             <a href="{{ route('bdrrmo.evacuees.lists', ['evacuee' => $center->evacuee]) }}" class="btn btn-sm btn-outline-info">
                                 <i class="fas fa-users"></i>
+                                @if(auth()->user()->type == 0)
                                 <i class="fas fa-plus-square"></i>
+                                @endif
                             </a>
-                            @endif
                         @endif
                     </td>
                 </tr>
