@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Evacuee;
 use App\Models\EvacueeInfo;
+use App\Services\EvacueeInfoService;
+use App\Services\EvacueeService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 
@@ -15,10 +17,28 @@ class EvacueeController extends Controller
     private $info;
 
     /**
-     * @param EvacueeInfo $info
+     * @var EvacueeService
      */
-    public function __construct(EvacueeInfo $info) {
+    private $evacueeService;
+
+    /**
+     * @var EvacueeInfoService
+     */
+    private $evacueeInfoService;
+
+    /**
+     * @param EvacueeInfo $info
+     * @param EvacueeService $evacueeService
+     * @param EvacueeInfoService $evacueeInfoService
+     */
+    public function __construct(
+        EvacueeInfo $info,
+        EvacueeService $evacueeService,
+        EvacueeInfoService $evacueeInfoService,
+    ) {
         $this->info = $info;
+        $this->evacueeService = $evacueeService;
+        $this->evacueeInfoService = $evacueeInfoService;
     }
 
     /**
@@ -28,11 +48,8 @@ class EvacueeController extends Controller
      */
     public function index(Evacuee $evacuee, Request $request)
     {
-        $lists = $this->info->with('evacuee')
-            ->where('evacuee_id', $evacuee->id)
-            ->where(\DB::raw('CONCAT(first_name,last_name)'), 'like', '%' . $request->keyword . '%')
-            ->paginate(5);
-
+        $limit = 5;
+        $lists = $this->evacueeInfoService->getEvacueesList($evacuee, $request->keyword, $limit);
         return view('pages.evacuees.index', [
             'evacuee' => $evacuee,
             'brgy' => $evacuee->evacuationCenter->barangay,
@@ -47,30 +64,13 @@ class EvacueeController extends Controller
      */
     public function store(Evacuee $evacuee, Request $request): RedirectResponse
     {
-        $evacuee->evacueeInfos()->create([
-            'first_name' => $request->first_name,
-            'last_name' => $request->last_name,
-            'gender' => $request->gender,
-            'age' => $request->age,
-            'is_head' => $request->is_head,
-            'purok' => $request->purok,
-        ]);
-
-        $this->updateFemaleAndMaleCounts($evacuee);
+        $this->evacueeInfoService->storeEvacuees($evacuee, $request);
+        $this->evacueeService->updateFemaleAndMaleCounts($evacuee);
         return redirect()->back()->with('msg', 'Evacuee successfully added.');
     }
 
-    /**
-     * @param $evacuee
-     * @return void
-     */
-    private function updateFemaleAndMaleCounts($evacuee)
+    private function updateAdultOrChildrenCounts($evacuee)
     {
-        $maleCount = $evacuee->evacueeInfos->where('gender', 'male')->count();
-        $femaleCount = $evacuee->evacueeInfos->where('gender', 'female')->count();
-        $evacuee->update([
-            'male_count' => $maleCount,
-            'female_count' => $femaleCount,
-        ]);
+
     }
 }

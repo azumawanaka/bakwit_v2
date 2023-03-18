@@ -4,7 +4,7 @@
     <div class="container-fluid px-4">
         <h1 class="mt-4">{{ $brgy->name }} list of evacuees</h1>
         <ol class="breadcrumb mb-5">
-            <li class="breadcrumb-item"><a href="/" class="text-decoration-none">Dashboard</a></li>
+            <li class="breadcrumb-item"><a href="{{ route('mdrrmo.centers') }}" class="text-decoration-none">MDRRMO</a></li>
             <li class="breadcrumb-item active">Evacuees</li>
         </ol>
         <div class="d-flex justify-content-between">
@@ -13,10 +13,10 @@
                     data-target="#evacueeModalCenter">
                 <i class="fa fa-plus"></i> Add Evacuee
             </button>
-            <form class="d-flex align-items-center">
+            <form class="d-flex align-items-center" method="GET" action="{{ route('bdrrmo.evacuees.lists', ['evacuee' => $evacuee]) }}">
                 @if(isset(request()->keyword))
                     <div class="mr-2">
-                        <a href="{{ route('bdrrmo.evacuees.lists') }}" class="btn btn-sm"><i class="fas fa-refresh"></i></a>
+                        <a href="{{ route('bdrrmo.evacuees.lists', ['evacuee' => $evacuee]) }}" class="btn btn-sm"><i class="fas fa-refresh"></i></a>
                     </div>
                 @endif
                 <div class="input-group">
