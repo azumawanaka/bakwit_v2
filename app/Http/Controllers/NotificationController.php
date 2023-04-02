@@ -25,6 +25,7 @@ class NotificationController extends Controller
     public function store(Request $request)
     {
         auth()->user()->notifications()->create([
+            'barangay' => $request->barangay,
             'contents' => $request->contents
         ]);
         return redirect()->back();

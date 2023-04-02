@@ -59,12 +59,12 @@
                         $('[name=max_capacity]').val(data.max_capacity)
                         $('[name=needs]').html(data.needs)
 
+                        $('[name=family_count]')
+                            .attr('max', data.max_capacity)
+
                         if (data.evacuee !== null) {
                             let family_count = data.evacuee.family_count
                             let pwd_count = data.evacuee.pwd_count
-
-                            $('[name=family_count]')
-                                .attr('max', data.max_capacity)
 
                             $('[name=family_count]')
                                 .val(family_count)

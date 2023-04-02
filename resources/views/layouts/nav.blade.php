@@ -41,8 +41,8 @@
                         <div class="toast-body">
                             @foreach($notifications as $notif)
                                 <div class="border-bottom py-1">
-                                    <div class="d-flex justify-content-between">
-                                        {{ $notif->contents }}
+                                    <div>
+                                        <strong>{{ $notif->barangay }}</strong> <br/>  {{ $notif->contents }}
                                     </div>
                                     <small>{{ $notif->updated_at->diffForHumans() }}</small>
                                 </div>
@@ -79,7 +79,10 @@
     </ul>
     @endauth
 
+    @auth
+    @else
     <a href="/login" class="login-btn text-decoration-none text-white"><i class="fas fa-sign-in"></i> Login</a>
+    @endauth
 </nav>
 <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
     @csrf

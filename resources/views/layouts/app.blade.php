@@ -63,15 +63,22 @@
                         @csrf
                         <div class="modal-body">
                             <div class="mb-3">
-                            <textarea class="form-control"
-                                      id="contents"
-                                      name="contents"
-                                      placeholder="Enter text here.."
-                                      minlength="5"
-                                      required
-                                      rows="4"></textarea>
+                                <select name="barangay" class="form-control">
+                                    @foreach($barangays as $brgy)
+                                    <option value="{{ $brgy->name }}">{{ $brgy->name }}</option>
+                                    @endforeach
+                                </select>
                             </div>
-                        </div>
+                            <div class="mb-3">
+                                <textarea class="form-control"
+                                        id="contents"
+                                        name="contents"
+                                        placeholder="Enter text here.."
+                                        minlength="5"
+                                        required
+                                        rows="4"></textarea>
+                                </div>
+                            </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                             <button type="submit" class="btn btn-primary">Send</button>

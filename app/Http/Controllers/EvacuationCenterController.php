@@ -138,8 +138,9 @@ class EvacuationCenterController extends Controller
             ]);
 
             if ($bdrrmo->evacuee()->count() > 0) {
-                $familyCount = !isset($bdrrmo->evacuee->family_count) ? 0 : $bdrrmo->evacuee->family_count;
+                $familyCount = !isset($request->family_count) ? 0 : $request->family_count;
                 $isFull = $bdrrmo->max_capacity <= $familyCount;
+
                 $bdrrmo->update([
                     'evacuation_center_type_id' => $bdrrmo->evacuationCenterType->id,
                     'is_evacuation_center_full' => $isFull,

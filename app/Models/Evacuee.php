@@ -22,6 +22,8 @@ class Evacuee extends Model
         'male_count',
         'female_count',
         'pwd_count',
+        'adult_count',
+        'children_count',
     ];
 
     /**

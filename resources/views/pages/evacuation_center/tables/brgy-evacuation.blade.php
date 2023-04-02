@@ -9,10 +9,12 @@
         <tr>
             <th>Barangay</th>
             <th>Evacuation Center Type</th>
-            <th>Maximum Capacity</th>
+            <th>Max Capacity</th>
             <th>Families</th>
             <th>Males</th>
             <th>Females</th>
+            <th>Adults</th>
+            <th>Children</th>
             <th>PWDs</th>
             <th>Status</th>
             <th style="width: 140px;">Options</th>
@@ -28,6 +30,8 @@
                     <td>{{ isset($center->evacuee) != null ? $center->evacuee->family_count : 0 }}</td>
                     <td>{{ isset($center->evacuee) != null ? $center->evacuee->male_count : 0 }}</td>
                     <td>{{ isset($center->evacuee) != null ? $center->evacuee->female_count : 0 }}</td>
+                    <td>{{ isset($center->evacuee) != null ? $center->evacuee->adult_count : 0 }}</td>
+                    <td>{{ isset($center->evacuee) != null ? $center->evacuee->children_count : 0 }}</td>
                     <td>{{ isset($center->evacuee) != null ? $center->evacuee->pwd_count : 0 }}</td>
                     <td>
                         <span class="legend bg-{{ $center->is_evacuation_center_full ? 'danger' : 'success' }}"></span></td>

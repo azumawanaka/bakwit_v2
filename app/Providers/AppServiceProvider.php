@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\Notification;
+use App\Models\Barangay;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -27,6 +28,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Paginator::useBootstrap();
 
+        view()->share('barangays', Barangay::orderBy('name', 'asc')->get());
         view()->share('notifications', Notification::all());
     }
 }
