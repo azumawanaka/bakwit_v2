@@ -79,6 +79,36 @@
                             <label class="form-check-label" for="is_pwd">Is PWD</label>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input mt-1"
+                                   name="is_pregnant"
+                                   type="checkbox"
+                                   value="1"
+                                   @if($list->is_pregnant) checked @endif>
+                            <label class="form-check-label" for="is_pregnant">Is Pregnant</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input mt-1"
+                                   name="is_infant"
+                                   type="checkbox"
+                                   value="1"
+                                   @if($list->is_infant) checked @endif>
+                            <label class="form-check-label" for="is_infant">Is Infant</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input mt-1"
+                                   name="is_senior"
+                                   type="checkbox"
+                                   value="1"
+                                   @if($list->is_senior) checked @endif>
+                            <label class="form-check-label" for="is_senior">Is Senior Citizen</label>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

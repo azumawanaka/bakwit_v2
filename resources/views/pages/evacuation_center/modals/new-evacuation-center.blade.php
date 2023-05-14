@@ -41,6 +41,30 @@
                                 {{ old('is_storm_surge') ? 'checked' : '' }} />
                         <label class="form-check-label" for="is_storm_surge"><small>Is this barangay near storm surge areas?</small></label>
                     </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input"
+                               id="is_land_slide"
+                               name="is_land_slide"
+                               type="checkbox"
+                                {{ old('is_land_slide') ? 'checked' : '' }} />
+                        <label class="form-check-label" for="is_land_slide"><small>Is this barangay near landslide areas?</small></label>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input"
+                               id="is_earthquake"
+                               name="is_earthquake"
+                               type="checkbox"
+                                {{ old('is_earthquake') ? 'checked' : '' }} />
+                        <label class="form-check-label" for="is_earthquake"><small>Is this barangay affected by earthquake?</small></label>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input"
+                               id="is_tsunami"
+                               name="is_tsunami"
+                               type="checkbox"
+                                {{ old('is_tsunami') ? 'checked' : '' }} />
+                        <label class="form-check-label" for="is_tsunami"><small>Is this barangay affected by tsunami?</small></label>
+                    </div>
 
                     <hr/>
 

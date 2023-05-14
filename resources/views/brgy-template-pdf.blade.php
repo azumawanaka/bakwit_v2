@@ -10,6 +10,8 @@
             font-family: Arial, Helvetica, sans-serif;
             border-collapse: collapse;
             width: 100%;
+            font-size: 12px;
+            font-family:Arial, Helvetica, sans-serif;
         }
 
         #evacuees th {
@@ -53,21 +55,35 @@
     <table id="evacuees">
         <thead class="thead-dark">
             <tr>
-                <th scope="col">Name</th>
-                <th scope="col">Age</th>
-                <th scope="col">Sex</th>
-                <th scope="col">Signature</th>
+                <th>Purok</th>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Gender</th>
+                <th>Age</th>
+                <th>Is head</th>
+                <th>Is PWD</th>
+                <th>Is Pregnant</th>
+                <th>Is Infant</th>
+                <th>Is Senior</th>
+                <th style="width:65px">Date Added</th>
             </tr>
         </thead>
         <tbody>
-            @for($i = 0; $i < $num_rows; $i++)
-                <tr>
-                    <td scope="row"></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            @endfor
+        @foreach($evacuees as $list)
+            <tr>
+                <td>{{ $list->purok }}</td>
+                <td>{{ $list->first_name }}</td>
+                <td>{{ $list->last_name }}</td>
+                <td>{{ $list->gender }}</td>
+                <td>{{ $list->age }}</td>
+                <td>{{ $list->is_head ? 'Yes' : 'No' }}</td>
+                <td>{{ $list->is_pwd ? 'Yes' : 'No' }}</td>
+                <td>{{ $list->is_pregnant ? 'Yes' : 'No' }}</td>
+                <td>{{ $list->is_infant ? 'Yes' : 'No' }}</td>
+                <td>{{ $list->is_senior ? 'Yes' : 'No' }}</td>
+                <td>{{ date('m-d-Y', strtotime($list->updated_at)) }}</td>
+            </tr>
+        @endforeach
         </tbody>
     </table>
 </body>

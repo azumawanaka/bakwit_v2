@@ -102,12 +102,20 @@
         </div>
     </div>
 
+    <footer class="bg-light text-lg-start mt-5">
+        <!-- Copyright -->
+        <div class="text-right p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+            Check our data privacy policy 
+            <a class="text-dark" href="{{ url('Data-Privacy-Policy-Statement.pdf') }}" target="_blank">here</a>
+        </div>
+        <!-- Copyright -->
+        </footer>
+
     <script src="{{ asset('js/jquery.min.js') }}"></script>
 
     <script type="text/javascript" src="{{ asset('js/bootstrap-bundle.min.js') }}"></script>
     <script src="{{ asset('js/scripts.js') }}"></script>
     <script src="{{ asset('js/moment.min.js') }}"></script>
-    <script src="{{ asset('js/weather.js') }}"></script>
 
     <script>
         $(document).ready(function() {

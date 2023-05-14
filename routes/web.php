@@ -35,7 +35,7 @@ Route::get('/calamity', [App\Http\Controllers\CalamityController::class, 'index'
     ->name('calamity.index');
 
 Route::middleware('auth')->group(function () {
-    Route::get('mdrrmo', [\App\Http\Controllers\MdrrmoController::class, 'index'])
+    Route::get('evacuees-lists', [\App\Http\Controllers\MdrrmoController::class, 'index'])
         ->name('mdrrmo.centers');
     Route::get('mdrrmo/generate-report', [\App\Http\Controllers\CsvController::class, 'generateReport'])
         ->name('mdrrmo.generate-report');
@@ -54,6 +54,9 @@ Route::middleware('auth')->group(function () {
         ->name('bdrrmo.evacuees.lists.store');
     Route::put('evacuees/{evacuee}/update/{info}', [\App\Http\Controllers\EvacueeController::class, 'update'])
         ->name('bdrrmo.evacuees.lists.update');
+
+    Route::get('evacuees/{evacuee}/generate-pdf', [\App\Http\Controllers\PDFController::class, 'generateEvacueesPDF'])
+        ->name('bdrrmo.evacuees.generate-pdf');
 
     Route::post('/calamity', [App\Http\Controllers\CalamityController::class, 'store'])
         ->name('calamity.store');

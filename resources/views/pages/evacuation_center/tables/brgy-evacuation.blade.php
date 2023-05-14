@@ -9,8 +9,7 @@
         <tr>
             <th>Barangay</th>
             <th>Evacuation Center Type</th>
-            <th>Max Capacity</th>
-            <th>Families</th>
+            <th>Evacuees/Max Capacity</th>
             <th>Males</th>
             <th>Females</th>
             <th>Adults</th>
@@ -26,8 +25,7 @@
                 <tr>
                     <td>{{ $center->barangay->name }}</td>
                     <td>{{ $center->evacuationCenterType->name }}</td>
-                    <td>{{ $center->max_capacity }}</td>
-                    <td>{{ isset($center->evacuee) != null ? $center->evacuee->family_count : 0 }}</td>
+                    <td>{{ isset($center->evacuee) != null ? $center->evacuee->family_count : 0 }} / {{ $center->max_capacity }}</td>
                     <td>{{ isset($center->evacuee) != null ? $center->evacuee->male_count : 0 }}</td>
                     <td>{{ isset($center->evacuee) != null ? $center->evacuee->female_count : 0 }}</td>
                     <td>{{ isset($center->evacuee) != null ? $center->evacuee->adult_count : 0 }}</td>

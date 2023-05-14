@@ -99,6 +99,11 @@ class BarangaySeeder extends Seeder
             'long' => '124.045277',
         ],
         [
+            'name' => 'Eastern Cabul-An',
+            'lat' => '10.154830',
+            'long' => '124.046310',
+        ],
+        [
             'name' => 'Hunan',
             'lat' => '10.035804',
             'long' => '124.143213',

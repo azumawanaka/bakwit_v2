@@ -21,6 +21,12 @@ class EvacuationCenterTypeSeeder extends Seeder
             'name' => 'Daycare Center',
         ],
         [
+            'name' => 'Health Station',
+        ],
+        [
+            'name' => 'BNS/BHW Center',
+        ],
+        [
             'name' => 'Others',
         ],
     ];

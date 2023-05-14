@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\EvacueeInfo;
+use App\Models\Evacuee;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\LengthAwarePaginator;
 
@@ -31,6 +32,17 @@ class EvacueeInfoService extends Model
 
     /**
      * @param $evacuee
+     */
+    public function getEvacueesListByCount(Evacuee $evacuee)
+    {
+        return $this->model->with('evacuee')
+            ->where('evacuee_id', $evacuee->id)
+            ->orderBy('updated_at', 'desc')
+            ->get();
+    }
+
+    /**
+     * @param $evacuee
      * @param $request
      * @return void
      */
@@ -43,6 +55,9 @@ class EvacueeInfoService extends Model
             'age' => $request->age,
             'is_head' => isset($request->is_head),
             'is_pwd' => isset($request->is_pwd),
+            'is_pregnant' => isset($request->is_pregnant),
+            'is_infant' => isset($request->is_infant),
+            'is_senior' => isset($request->is_senior),
             'purok' => $request->purok,
         ]);
     }
@@ -61,6 +76,9 @@ class EvacueeInfoService extends Model
             'gender' => $request->gender,
             'is_head' => isset($request->is_head),
             'is_pwd' => isset($request->is_pwd),
+            'is_pregnant' => isset($request->is_pregnant),
+            'is_infant' => isset($request->is_infant),
+            'is_senior' => isset($request->is_senior),
             'purok' => $request->purok,
         ]);
     }

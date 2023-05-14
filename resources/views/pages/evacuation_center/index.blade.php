@@ -87,8 +87,14 @@
 
                     let is_flood_prone = data.barangay.is_flood_prone ? true : false
                     let is_storm_surge = data.barangay.is_storm_surge ? true : false
+                    let is_land_slide = data.barangay.is_land_slide ? true : false
+                    let is_earthquake = data.barangay.is_earthquake ? true : false
+                    let is_tsunami = data.barangay.is_tsunami ? true : false
                     $('[name=is_flood_prone]').prop('checked', is_flood_prone)
                     $('[name=is_storm_surge]').prop('checked', is_storm_surge)
+                    $('[name=is_land_slide]').prop('checked', is_land_slide)
+                    $('[name=is_earthquake]').prop('checked', is_earthquake)
+                    $('[name=is_tsunami]').prop('checked', is_tsunami)
 
                     if (data.evacuee !== null) {
                         let family_count = data.evacuee.family_count

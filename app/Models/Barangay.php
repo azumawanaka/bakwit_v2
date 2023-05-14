@@ -22,6 +22,9 @@ class Barangay extends Model
         'long',
         'is_flood_prone',
         'is_storm_surge',
+        'is_land_slide',
+        'is_earthquake',
+        'is_tsunami',
     ];
 
     /**
@@ -30,6 +33,9 @@ class Barangay extends Model
     protected $casts = [
         'is_flood_prone' => 'boolean',
         'is_storm_surge' => 'boolean',
+        'is_land_slide' => 'boolean',
+        'is_earthquake' => 'boolean',
+        'is_tsunami' => 'boolean',
     ];
 
     /**

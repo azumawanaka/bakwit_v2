@@ -40,6 +40,13 @@
                     </button>
                 </div>
             </form>
+    
+            @if(auth()->user()->type === 0)
+            <a href="{{ route('bdrrmo.evacuees.generate-pdf', ['evacuee' => $evacuee]) }}"
+                class="btn btn-secondary">
+                Generate Evacuee Report
+            </a>
+            @endif
         </div>
 
         @if (session('msg'))
@@ -54,6 +61,7 @@
 
         @include('pages.evacuees.tables.lists')
         @include('pages.evacuees.modal.new_evacuee')
+        @include('pages.evacuees.modal.generate-pdf')
     </div>
 
 @endsection

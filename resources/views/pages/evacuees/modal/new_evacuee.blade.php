@@ -48,6 +48,24 @@
                             <label class="form-check-label" for="is_head">Is PWD</label>
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input mt-1" name="is_pregnant" type="checkbox" id="is_pregnant" value="1">
+                            <label class="form-check-label" for="is_pregnant">Is Pregnant</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input mt-1" name="is_infant" type="checkbox" id="is_infant" value="1">
+                            <label class="form-check-label" for="is_infant">Is Infant</label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input mt-1" name="is_senior" type="checkbox" id="is_senior" value="1">
+                            <label class="form-check-label" for="is_senior">Is Senior Citizen</label>
+                        </div>
+                    </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

@@ -5,7 +5,7 @@
         <h1 class="mt-4">MDRRMO</h1>
         <ol class="breadcrumb mb-5">
             <li class="breadcrumb-item"><a href="/" class="text-decoration-none">Dashboard</a></li>
-            <li class="breadcrumb-item active">MDRRMO</li>
+            <li class="breadcrumb-item active">BDRRMO</li>
         </ol>
         @if(auth()->user()->type === 0)
             <div class="row">

@@ -25,6 +25,9 @@ class BarangayService extends Model
             ->update([
                 'is_flood_prone' => $request['is_flood_prone'] === 'on',
                 'is_storm_surge' => $request['is_storm_surge'] === 'on',
+                'is_land_slide' => $request['is_land_slide'] === 'on',
+                'is_earthquake' => $request['is_earthquake'] === 'on',
+                'is_tsunami' => $request['is_tsunami'] === 'on',
             ]);
     }
 }
