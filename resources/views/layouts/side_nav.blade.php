@@ -22,7 +22,7 @@
                 </a>
                 <a class="nav-link {{ request()->routeIs('mdrrmo.centers*') ? 'active' : '' }}" href="{{ route('mdrrmo.centers') }}">
                     <div class="sb-nav-link-icon"><i class="fas fa-building"></i></div>
-                    BDRRMO
+                    {{ auth()->user()->type === 1 ? 'MDRRMO' : 'BDRRMO' }}
                 </a>
 
                 @if(auth()->user()->type === 1)

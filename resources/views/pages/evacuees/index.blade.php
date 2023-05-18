@@ -41,7 +41,7 @@
                 </div>
             </form>
     
-            @if(auth()->user()->type === 0)
+            @if(auth()->user()->type === 1)
             <a href="{{ route('bdrrmo.evacuees.generate-pdf', ['evacuee' => $evacuee]) }}"
                 class="btn btn-secondary">
                 Generate Evacuee Report

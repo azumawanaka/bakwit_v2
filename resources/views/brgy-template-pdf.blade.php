@@ -43,12 +43,20 @@
         #logo img {
             width: 150px;
         }
+        .t-center {
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <div id="logo">
         <img src="./img/logo.jpg">
-        <p>This is a sample text</p>
+        <p class="t-center">Republic of the Philippines<br/>
+            Province of Bohol<br/>
+            Municipality of Buenavista<br/>
+            Municipal Disaster Risk Reduction Management Office<br/>
+            Buenavista Unit Office
+        </p>
     </div>
 
     <h2>{{ $title }}</h2>
@@ -86,5 +94,13 @@
         @endforeach
         </tbody>
     </table>
+
+    <div style="display: block; width: 300px; margin-top: 40px;">
+        Approved by:<br/>
+        <div class="t-center" style="width: 250px;">
+            <strong style="text-decoration: underline;">CHERRY O. MERN</strong><br/>
+            LDRRMO II
+        </div>
+    </div>
 </body>
 </html>
