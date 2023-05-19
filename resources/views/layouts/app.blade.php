@@ -102,14 +102,40 @@
         </div>
     </div>
 
-    <footer class="bg-light text-lg-start mt-5">
-        <!-- Copyright -->
+    {{-- <footer class="bg-light text-lg-start mt-5">
         <div class="text-right p-3" style="background-color: rgba(0, 0, 0, 0.2);">
             Check our data privacy policy 
             <a class="text-dark" href="{{ url('Data-Privacy-Policy-Statement.pdf') }}" target="_blank">here</a>
         </div>
-        <!-- Copyright -->
-        </footer>
+    </footer> --}}
+    
+    @if (isset(auth()->user()->is_policy_checked) && !auth()->user()->is_policy_checked)
+    <div class="modal fade hide" id="privacy" role="dialog" data-backdrop="static" data-keyboard="false">
+        <div class="modal-dialog modal-md">
+            <div class="modal-content">
+                <div class="modal-header py-2">
+                    <h4 class="modal-title">Data Privacy Policy</h4>
+                </div>
+                <form method="post" action="{{ route('user.update-privacy') }}">
+                    @csrf
+                    <div class="modal-body">
+                        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Similique ratione iste tempora quos quam veritatis, rem nobis adipisci impedit. Earum inventore eos id, nihil tempore commodi quam fugit asperiores beatae.
+                        <div class="form-check mt-4">
+                            <input class="form-check-input" type="checkbox" name="is_policy_checked" value="1" id="is_policy_checked" required>
+                            <label class="form-check-label" for="is_policy_checked">
+                                This is another sample text
+                            </label>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                        <button type="submit" class="btn btn-success">Ok</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    @endif
 
     <script src="{{ asset('js/jquery.min.js') }}"></script>
 
@@ -127,6 +153,9 @@
                 e.preventDefault()
                 $('#notifications').removeClass('show')
             })
+        })
+        $(window).on('load', function() {
+            $('#privacy').modal('show')
         })
     </script>
 

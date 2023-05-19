@@ -67,4 +67,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('mdrrmo/notify', [\App\Http\Controllers\NotificationController::class, 'store'])
         ->name('send.notification');
+
+    Route::post('users/update/privacy', [\App\Http\Controllers\CustomUserController::class, 'update'])
+        ->name('user.update-privacy');
 });

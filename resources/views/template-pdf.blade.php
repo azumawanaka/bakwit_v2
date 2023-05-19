@@ -81,7 +81,7 @@
     <div style="display: block; width: 300px; margin-top: 40px;">
         Approved by:<br/>
         <div class="t-center" style="width: 250px;">
-            <strong style="text-decoration: underline;">CHERRY O. MERN</strong><br/>
+            <strong style="text-decoration: underline;">CHERRY G. MERIN</strong><br/>
             LDRRMO II
         </div>
     </div>
