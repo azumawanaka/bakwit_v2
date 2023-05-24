@@ -48,6 +48,7 @@ class BarangayController extends Controller
                 'evacuationCenter',
                 'evacuationCenter.evacuationCenterType',
                 'evacuationCenter.evacuee',
+                'evacuationCenter.evacuee.evacueeInfos',
                 'evacuationCenter.files',
             ])
             ->where('barangays.id', $barangay->id)
@@ -64,6 +65,7 @@ class BarangayController extends Controller
             'evacuationCenter',
             'evacuationCenter.evacuationCenterType',
             'evacuationCenter.evacuee',
+            'evacuationCenter.evacuee.evacueeInfos',
             'evacuationCenter.files',
             ])
             ->get();

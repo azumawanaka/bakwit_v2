@@ -12,10 +12,10 @@
         <thead>
             <tr>
                 <th>Barangay</th>
-                <th>Status</th>
                 <th>Evacuees/Max Capacity</th>
                 <th>Males</th>
                 <th>Females</th>
+                <th>Status</th>
             </tr>
         </thead>
         <tbody>
@@ -24,18 +24,17 @@
                 <tr>
                     <td>{{ $center->barangay->name }}</td>
                     <td>
-                        <span class="legend bg-{{ $center->is_evacuation_center_full ? 'danger' : 'success' }}"></span
-                    </td>
-                    <td>
                         @php
                             $male_count = isset($center->evacuee) != null ? $center->evacuee->male_count : 0;
                             $female_count = isset($center->evacuee) != null ? $center->evacuee->female_count : 0;
-                            $family_count = isset($center->evacuee) != null ? $center->evacuee->family_count : 0;
                         @endphp
-                        {{ $family_count }} / {{ $center->max_capacity }}
+                        {{ $center->evacuee !== null ? $center->evacuee->evacueeInfos->count() : 0 }} / {{ $center->max_capacity }}
                     </td>
                     <td>{{ $male_count }}</td>
                     <td>{{ $female_count }}</td>
+                    <td>
+                        <span class="legend bg-{{ $center->is_evacuation_center_full ? 'danger' : 'success' }}"></span>
+                    </td>
                 </tr>
             @endforeach
         @else

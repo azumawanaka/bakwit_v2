@@ -31,10 +31,10 @@
                         Number of Evacuees
                         <span class="badge badge-{{ $total === 0 ? 'danger' : 'primary' }} badge-pill">{{ $total }}</span>
                     </li>
-                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                    {{-- <li class="list-group-item d-flex justify-content-between align-items-center">
                         Number of Families
                         <span class="badge badge-{{ $center->evacuee !== null && $center->evacuee->family_count === 0 ? 'danger' : 'primary' }} badge-pill">{{ isset($center->evacuee) != null ? $center->evacuee->family_count : 0 }}</span>
-                    </li>
+                    </li> --}}
                     <li class="list-group-item d-flex justify-content-between align-items-center">
                         Number of Males
                         <span class="badge badge-{{ $male_count === 0 ? 'danger' : 'primary' }} badge-pill">{{ $male_count }}</span>

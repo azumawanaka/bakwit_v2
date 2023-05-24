@@ -39,6 +39,7 @@ class EvacuationCenterService extends Model
                 'evacuationCenterType',
                 'barangay',
                 'evacuee',
+                'evacuee.evacueeInfos',
                 'files'
             ])
             ->whereHas('barangay', function ($query) use ($request){

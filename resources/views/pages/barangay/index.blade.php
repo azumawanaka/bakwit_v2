@@ -76,24 +76,24 @@
                         map: map,
                         title: `Brgy. ${markers.name}`,
                         icon: icon_marker
-                    });
+                    }); 
                     (function (marker, data) {
                         google.maps.event.addListener(marker, "click", function (e) {
                             let info = `<strong style="margin-bottom: 10px; display: block; ">Brgy. ${data.name}</strong>`
                             if (data.evacuation_center != null) {
-                                let family_count = data.evacuation_center.evacuee != null ? data.evacuation_center.evacuee.family_count : 0
+                                let evacuees_count = data.evacuation_center.evacuee != null ? data.evacuation_center.evacuee.evacuee_infos.length : 0
                                 let male_count = data.evacuation_center.evacuee != null ? data.evacuation_center.evacuee.male_count : 0
                                 let female_count = data.evacuation_center.evacuee != null ? data.evacuation_center.evacuee.female_count : 0
                                 let pwd_count = data.evacuation_center.evacuee != null ? data.evacuation_center.evacuee.pwd_count : 0
 
                                 let is_flood_prone = data.is_flood_prone ? 'Yes' : 'No'
                                 let is_storm_surge = data.is_storm_surge ? 'Yes' : 'No'
-
+                                
                                 info += `<div class="d-flex justify-content-between border-bottom py-1">Is flood prone? <span class="badge badge-info">${is_flood_prone}</span></div>
                                     <div class="d-flex justify-content-between border-bottom py-1">Has storm surge areas <span class="badge badge-info">${is_storm_surge}</span></div>
                                     <div class="d-flex justify-content-between border-bottom py-1">Evacuation Center Type <span class="badge badge-info">${data.evacuation_center.evacuation_center_type.name}</span></div>
                                     <div class="d-flex justify-content-between border-bottom py-1">Maximum Capacity <span class="badge badge-info">${data.evacuation_center.max_capacity}</span></div>
-                                    <div class="d-flex justify-content-between border-bottom py-1">Family <span class="badge badge-${family_count == 0 ? 'danger' : 'info'} mr-1">${family_count}</span></div>
+                                    <div class="d-flex justify-content-between border-bottom py-1">Evacuees <span class="badge badge-${evacuees_count == 0 ? 'danger' : 'info'} mr-1">${evacuees_count}</span></div>
                                     <div class="d-flex justify-content-between border-bottom py-1">Male <span class="badge badge-${male_count == 0 ? 'danger' : 'info'} mr-1">${male_count}</span></div>
                                     <div class="d-flex justify-content-between border-bottom py-1">Female <span class="badge badge-${female_count == 0 ? 'danger' : 'info'} mr-1">${female_count}</span></div>
                                     <div class="d-flex justify-content-between border-bottom py-1">PWDs <span class="badge badge-${pwd_count == 0 ? 'danger' : 'info'} mr-1">${pwd_count}</span></div>
