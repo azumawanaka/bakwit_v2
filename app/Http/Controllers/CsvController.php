@@ -33,6 +33,7 @@ class CsvController extends Controller
                 'evacuationCenterType',
                 'barangay',
                 'evacuee',
+                'evacuee.evacueeInfos',
                 'files'
             ])
             ->whereHas('barangay', function ($query) use ($request){
@@ -43,15 +44,21 @@ class CsvController extends Controller
         foreach ($evacuationCenters as $center) {
             $male_count = isset($center->evacuee) != null ? $center->evacuee->male_count : 0;
             $female_count = isset($center->evacuee) != null ? $center->evacuee->female_count : 0;
-            $total = $male_count + $female_count;
+            if (isset($center->evacuee->evacueeInfos)) {
+                $total = $center->evacuee->evacueeInfos->count() .'/'. $center->max_capacity;
+            }
             $bry = [
                 'barangay' => $center->barangay->name,
-                'evacuees_total' => $total > 0 ? $total : '----',
-                'family_count' => isset($center->evacuee) != null ? $center->evacuee->family_count : '----',
-                'female_count' => $female_count > 0 ? $female_count : '----',
+                'evacuees_total' => $total,
                 'male_count' => $male_count > 0 ? $male_count : '----',
-                'pwd_count' => isset($center->evacuee) != null ? $center->evacuee->pwd_count : '----',
-                'max_capacity' => $center->max_capacity,
+                'female_count' => $female_count > 0 ? $female_count : '----',
+                'adult_count' => isset($center->evacuee->adult_count) > 0 ? $center->evacuee->adult_count : '----',
+                'children_count' => isset($center->evacuee->children_count) > 0 ? $center->evacuee->children_count : '----',
+                'infant_count' => $center->totalInfant(),
+                'senior_count' => $center->totalSenior(),
+                'pwd_count' => $center->totalPwd(),
+                'pregnant_count' => $center->totalPregnant(),
+                'family_head_count' => $center->totalFamilyHead(),
                 'status' => $center->is_evacuation_center_full ? 'No' : 'Yes',
             ];
             array_push($centers, $bry);

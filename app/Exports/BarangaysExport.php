@@ -59,12 +59,16 @@ class BarangaysExport implements FromCollection,
     {
         return [
             'Barangays',
-            'Number of Evacuees',
-            'Number of Families',
-            'Number of Females',
+            'Evacuees/Max Capacity',
             'Number of Males',
+            'Number of Females',
+            'Number of Adults',
+            'Number of Children',
+            'Number of Infants',
+            'Number of Senior Citizens',
             'Number of PWDs',
-            'Number of Total Max Capacity',
+            'Number of Pregnants',
+            'Number of Head of Families',
             'Status of Availability',
         ];
     }

@@ -15,6 +15,13 @@
                 <th>Evacuees/Max Capacity</th>
                 <th>Males</th>
                 <th>Females</th>
+                <th>Adults</th>
+                <th>Children</th>
+                <th>Infants</th>
+                <th>Senior Citizens</th>
+                <th>PWDs</th>
+                <th>Pregnant</th>
+                <th>Head of families</th>
                 <th>Status</th>
             </tr>
         </thead>
@@ -24,14 +31,41 @@
                 <tr>
                     <td>{{ $center->barangay->name }}</td>
                     <td>
-                        @php
-                            $male_count = isset($center->evacuee) != null ? $center->evacuee->male_count : 0;
-                            $female_count = isset($center->evacuee) != null ? $center->evacuee->female_count : 0;
-                        @endphp
                         {{ $center->evacuee !== null ? $center->evacuee->evacueeInfos->count() : 0 }} / {{ $center->max_capacity }}
                     </td>
-                    <td>{{ $male_count }}</td>
-                    <td>{{ $female_count }}</td>
+                    <td>{{ isset($center->evacuee) != null ? $center->evacuee->male_count : 0 }}</td>
+                    <td>{{ isset($center->evacuee) != null ? $center->evacuee->female_count : 0 }}</td>
+                    <td>
+                        {{ $center->evacuee !== null ? $center->evacuee->adult_count : 0 }}
+                    </td>
+                    <td>
+                        {{ $center->evacuee !== null ? $center->evacuee->children_count : 0 }}
+                    </td>
+                    <td>
+                        @if ( $center->evacuee !== null )
+                            {{ $center->totalInfant() }}
+                        @endif
+                    </td>
+                    <td>
+                        @if ( $center->evacuee !== null )
+                            {{ $center->totalSenior() }}
+                        @endif
+                    </td>
+                    <td>
+                        @if ( $center->evacuee !== null )
+                            {{ $center->totalPwd() }}
+                        @endif
+                    </td>
+                    <td>
+                        @if ( $center->evacuee !== null )
+                            {{ $center->totalPregnant() }}
+                        @endif
+                    </td>
+                    <td>
+                        @if ( $center->evacuee !== null )
+                            {{ $center->totalFamilyHead() }}
+                        @endif
+                    </td>
                     <td>
                         <span class="legend bg-{{ $center->is_evacuation_center_full ? 'danger' : 'success' }}"></span>
                     </td>

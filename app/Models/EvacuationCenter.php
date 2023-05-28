@@ -68,4 +68,29 @@ class EvacuationCenter extends Model
     {
         return $this->hasMany(File::class);
     }
+
+    public function totalPregnant()
+    {
+        return isset($this->evacuee->evacueeInfos) ? $this->evacuee->evacueeInfos()->where('is_pregnant', true)->get()->count() : 0;
+    }
+
+    public function totalInfant()
+    {
+        return isset($this->evacuee->evacueeInfos) ? $this->evacuee->evacueeInfos()->where('is_infant', true)->get()->count() : 0;
+    }
+
+    public function totalSenior()
+    {
+        return isset($this->evacuee->evacueeInfos) ? $this->evacuee->evacueeInfos()->where('is_senior', true)->get()->count() : 0;
+    }
+
+    public function totalPwd()
+    {
+        return isset($this->evacuee->evacueeInfos) ? $this->evacuee->evacueeInfos()->where('is_pwd', true)->get()->count() : 0;
+    }
+
+    public function totalFamilyHead()
+    {
+        return isset($this->evacuee->evacueeInfos) ? $this->evacuee->evacueeInfos()->where('is_head', true)->get()->count() : 0;
+    }
 }
